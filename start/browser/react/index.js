@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory, IndexRedirect} from 'react-router';
+import { Provider } from 'react-redux';
 
 import AlbumsContainer from './containers/AlbumsContainer';
 import AlbumContainer from './containers/AlbumContainer';
@@ -9,16 +10,20 @@ import FilterableArtistsContainer from './containers/FilterableArtistsContainer'
 import NewPlaylistContainer from './containers/NewPlaylistContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
 import LyricsContainer from './containers/LyricsContainer';
+import StationsContainer from './containers/StationsContainer';
+import StationContainer from './components/StationContainer';
 
 import App from './components/App';
 import Albums from './components/Albums';
 import Songs from './components/Songs';
 
+
 import axios from 'axios';
 import store from './store';
 import {receiveAlbums, getAlbumById} from './action-creators/albums';
 import {receiveArtists, getArtistById} from './action-creators/artists';
-import {receivePlaylists, getPlaylistById} from './action-creators/playlists';
+import {receivePlaylists, getPlaylistById, loadAllSongs} from './action-creators/playlists';
+import {getGenreSongs} from './containers/StationsContainer';
 
 const onAppEnter = function () {
 
@@ -49,7 +54,12 @@ const onPlaylistEnter = function (nextRouterState) {
   store.dispatch(getPlaylistById(playlistId));
 };
 
+const onStationsEnter = function(nextRouterState) {
+  store.dispatch(loadAllSongs());
+};
+
 ReactDOM.render(
+<Provider store={store}>
   <Router history={hashHistory}>
     <Route path="/" component={App} onEnter={onAppEnter}>
       <Route path="/albums" component={AlbumsContainer}/>
@@ -62,8 +72,11 @@ ReactDOM.render(
       <Route path="/new-playlist" component={NewPlaylistContainer}/>
       <Route path="/playlists/:playlistId" component={PlaylistContainer} onEnter={onPlaylistEnter}/>
       <Route path="/lyrics" component={LyricsContainer} />
+      <Route path="/stations" component={StationsContainer} onEnter={onStationsEnter}/>
+      <Route path="/stations/:genre" component={StationContainer} onEnter={onStationsEnter}/>
       <IndexRedirect to="/albums"/>
     </Route>
-  </Router>,
+  </Router>
+</Provider>,
   document.getElementById('app')
 );
