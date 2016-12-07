@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
-const Sidebar = (props) => {
+export default function (props) {
 
   const playlists = props.playlists;
 
   return (
     <sidebar>
-      <img src="juke.svg" className="logo" />
+      <img src="juke.svg" className="logo"/>
       <section>
         <h4 className="menu-item">
           <Link to='/albums'>ALBUMS</Link>
@@ -16,6 +16,11 @@ const Sidebar = (props) => {
       <section>
         <h4 className="menu-item">
           <Link to='/artists'>ARTISTS</Link>
+        </h4>
+      </section>
+      <section>
+        <h4 className="menu-item">
+          <Link to='/lyrics'>LYRICS</Link>
         </h4>
       </section>
       <hr />
@@ -32,9 +37,9 @@ const Sidebar = (props) => {
         {
           playlists.map(playlist => {
             return (
-            <li key={playlist.id} className="playlist-item menu-item">
-              <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
-            </li>
+              <li key={playlist.id} className="playlist-item menu-item">
+                <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
+              </li>
             );
           })
         }
@@ -42,5 +47,3 @@ const Sidebar = (props) => {
     </sidebar>
   );
 }
-
-export default Sidebar;

@@ -2,36 +2,19 @@ import React from 'react';
 import Songs from './Songs';
 import AddSongContainer from '../containers/AddSongContainer';
 
-class Playlist extends React.Component {
+export default function (props) {
 
-  componentDidMount () {
-    const playlistId = this.props.routeParams.playlistId;
-    const selectPlaylist = this.props.selectPlaylist;
-    selectPlaylist(playlistId);
-  }
+  const playlist = props.selectedPlaylist;
 
-  componentWillReceiveProps (nextProps) {
-    const nextPlaylistId = nextProps.routeParams.playlistId;
-    const currentPlaylistId = this.props.routeParams.playlistId;
-    const selectPlaylist = this.props.selectPlaylist;
-    if (nextPlaylistId !== currentPlaylistId)
-      selectPlaylist(nextPlaylistId);
-  }
+  return (
+    <div>
+      <h3>{ playlist.name }</h3>
+      <Songs {...props} songs={playlist.songs}/>
+      { playlist.songs && !playlist.songs.length && <small>No songs.</small> }
+      <AddSongContainer />
+      <hr />
+    </div>
+  );
 
-  render () {
-
-    const playlist = this.props.selectedPlaylist;
-
-    return (
-      <div>
-        <h3>{ playlist.name }</h3>
-        <Songs {...this.props} songs={playlist.songs} />
-        { playlist.songs && !playlist.songs.length && <small>No songs.</small> }
-        <hr />
-        <AddSongContainer {...this.props} />
-      </div>
-    );
-  }
 }
 
-export default Playlist;

@@ -17,7 +17,7 @@ module.exports = db.define('artist', {
 
   instanceMethods: {
     getAlbums: function () {
-      return db.model('album').findAll({
+      return db.model('album').scope('defaultScope', 'populated').findAll({
         include: [{
           model: db.model('song'),
           include: [{

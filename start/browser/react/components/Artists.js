@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
-const Artists = (props) => {
+export default function (props) {
 
   const artists = props.artists;
 
@@ -22,5 +22,3 @@ const Artists = (props) => {
     </div>
   );
 }
-
-export default Artists;

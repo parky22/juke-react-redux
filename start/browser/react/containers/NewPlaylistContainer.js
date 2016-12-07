@@ -1,9 +1,11 @@
 import React from 'react';
 import NewPlaylist from '../components/NewPlaylist';
+import store from '../store';
+import {addNewPlaylist} from '../action-creators/playlists';
 
 class FormContainer extends React.Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       inputValue: '',
@@ -13,7 +15,7 @@ class FormContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (evt) {
+  handleChange(evt) {
     const value = evt.target.value;
     this.setState({
       inputValue: value,
@@ -21,17 +23,20 @@ class FormContainer extends React.Component {
     });
   }
 
-  handleSubmit (evt) {
+  handleSubmit(evt) {
+
     evt.preventDefault();
 
-    const addPlaylist = this.props.addPlaylist;
-    addPlaylist(this.state.inputValue);
+    store.dispatch(addNewPlaylist(this.state.inputValue));
+
     this.setState({
-      inputValue: ''
+      inputValue: '',
+      dirty: false
     });
+
   }
 
-  render () {
+  render() {
 
     const dirty = this.state.dirty;
     const inputValue = this.state.inputValue;
@@ -49,6 +54,7 @@ class FormContainer extends React.Component {
       />
     );
   }
+
 }
 
 export default FormContainer;

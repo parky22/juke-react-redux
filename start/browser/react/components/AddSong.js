@@ -1,7 +1,7 @@
 import React from 'react';
 import Songs from './Songs';
 
-const AddSong = (props) => {
+export default function (props) {
 
   const songs = props.songs;
   const error = props.error;
@@ -40,5 +40,3 @@ const AddSong = (props) => {
     </div>
   );
 }
-
-export default AddSong;

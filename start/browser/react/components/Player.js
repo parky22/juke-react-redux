@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Player = (props) => {
+export default function (props) {
 
   const currentSong = props.currentSong;
-  const currentSongList = props.currentSongList;
   const isPlaying = props.isPlaying;
   const progress = props.progress;
   const prev = props.prev;
@@ -32,6 +31,4 @@ const Player = (props) => {
       </div>
     </footer>
   );
-}
-
-export default Player;
+};

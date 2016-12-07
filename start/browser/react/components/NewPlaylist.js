@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewPlaylist = (props) => {
+export default function (props) {
 
   const handleChange = props.handleChange;
   const handleSubmit = props.handleSubmit;
@@ -38,6 +38,4 @@ const NewPlaylist = (props) => {
       </form>
     </div>
   );
-}
-
-export default NewPlaylist;
+};

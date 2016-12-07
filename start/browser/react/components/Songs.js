@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Songs = (props) => {
+export default function (props) {
 
   const songs = props.songs;
   const currentSong = props.currentSong;
@@ -38,5 +38,3 @@ const Songs = (props) => {
     </table>
   );
 }
-
-export default Songs;

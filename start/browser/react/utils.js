@@ -14,7 +14,7 @@ export const convertAlbums = (albums) =>
 
 const mod = (num, m) => ((num % m) + m) % m;
 
-export const skip = (interval, { currentSongList, currentSong }) => {
+export const skip = (interval, {currentSongList, currentSong}) => {
   let idx = currentSongList.map(song => song.id).indexOf(currentSong.id);
   idx = mod(idx + interval, currentSongList.length);
   const next = currentSongList[idx];
