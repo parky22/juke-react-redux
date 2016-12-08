@@ -4,16 +4,10 @@ import Songs from './Songs';
 
 
 const Station = function(props){
-
+  console.log("the props from the station component: ", props);
   return (
     <div>
-      <h3> {DUMMY_GENRE_NAME} </h3>
-      <Songs
-        songs={props.songs}
-        currentSong = {DUMMY_CURRENT_SONG}
-        isPlaying = {DUMMY_IS_PLAYING}
-        toggle = {DUMMY_TOGGLE_ONE}
-      />
+      <h3> {props.genreName} </h3>
     </div>
   );
 }
